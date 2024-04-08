@@ -1,5 +1,6 @@
 package com.example.cabsingapore
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.example.cabsingapore.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -28,9 +30,15 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
+        fun x(view: View) {
+
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+            val launchIntent: Intent? = view.context.packageManager.getLaunchIntentForPackage("com.grabtaxi.passenger")
+            view.context.startActivity(launchIntent);
+        }
+
+        binding.fab.setOnClickListener { view -> x(view)
         }
     }
 
